@@ -1,26 +1,30 @@
 import { Component } from '@angular/core';
+
 import { NavController } from 'ionic-angular';
-import {DetailPage} from '../detail/detail';
+import { DetailPage } from '../detail/detail';
+import { PeopleData } from '../../providers/people-data';
+
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers:[PeopleData]
 })
 export class HomePage {
-public people =new Array();
-private detailPage;
-  constructor(public navCtrl: NavController) {
+
+  public people = new Array();
+  private detailPage;
+
+  constructor(public navCtrl: NavController, public peopleData:PeopleData) {
+    peopleData.getPeople().subscribe(people => {
+      console.log('people',people);
+      this.people = people;
+    });
     this.detailPage = DetailPage;
-    this.people.push({name:"person one", id:1});
-    this.people.push({name:"person two", id:2});
-    this.people.push({name:"person three", id:3});
-
-
-
   }
-  loadDetail(person){
+
+  loadDetail(person) {
     console.log(person);
-    this.navCtrl.push(this.detailPage,{ person : person.id});
+    this.navCtrl.push(this.detailPage, {person:person});
   }
-
 
 }

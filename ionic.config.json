@@ -1,7 +1,6 @@
 {
-  "name": "iapp",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
+  "name": "filmapp",
+  "integrations": {},
+  "v2": true,
+  "typescript": true
 }
